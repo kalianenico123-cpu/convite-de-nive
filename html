@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Convite de Aniversário</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #5b5a5a, #fff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 10px;
+    }
+
+    .convite {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .foto {
+      width: 100%;
+      height: auto;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      color: #040404;
+      font-size: 24px;
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    button {
+      background: #161414;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #1b1819;
+    }
+
+    #mensagem {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    @media (max-width: 500px) {
+      .convite {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 20px;
+      }
+
+      p {
+        font-size: 14px;
+      }
+
+      input, button {
+        padding: 8px;
+        font-size: 14px;
+      }
+
+      .foto {
+        max-height: 250px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="convite">
+
+    <img src="Convite de aniversário rosa com flores .png" class="foto">
+
+    <h1>Aniversário de Kaliane</h1>
+
+    <p><b>Data:</b> 03/05/2026</p>
+    <p><b>Hora:</b> 11:00</p>
+
+    <p><b>Local:</b> Rua Cícero Gomes Silva<br>Vem Que Tem</p>
+
+    <a href="https://maps.app.goo.gl/uwjYK5ja4V2m4QWA8?g_st=aw" target="_blank">
+      Ver localização
+    </a>
+
+    <hr>
+
+    <h3>Confirme sua presença</h3>
+
+    <input type="text" id="nome" placeholder="Seu nome">
+    <input type="number" id="quantidade" placeholder="Quantidade de pessoas">
+
+    <button onclick="enviar()">Confirmar Presença</button>
+
+    <p id="mensagem"></p>
+
+  </div>
+
+  <script>
+    function enviar() {
+      const nome = document.getElementById("nome").value;
+      const quantidade = document.getElementById("quantidade").value;
+
+      const url = "https://script.google.com/macros/s/AKfycbxZjpMQIh5VSmReSf7ZspSdz2iDtN62DGX8rDZ75p463OyYbUqNY2SFlo4VNZ3UfvPtJw/exec"
+        + "?nome=" + encodeURIComponent(nome)
+        + "&quantidade=" + encodeURIComponent(quantidade);
+
+      fetch(url)
+        .then(() => {
+          document.getElementById("mensagem").innerText = "✅ Presença confirmada!";
+          document.getElementById("mensagem").style.color = "green";
+
+          document.getElementById("nome").value = "";
+          document.getElementById("quantidade").value = "";
+        })
+        .catch(() => {
+          document.getElementById("mensagem").innerText = "❌ Erro ao enviar.";
+          document.getElementById("mensagem").style.color = "red";
+        });
+    }
+  </script>
+
+</body>
+</html>
